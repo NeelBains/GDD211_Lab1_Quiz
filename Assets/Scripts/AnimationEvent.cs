@@ -9,13 +9,30 @@ public class AnimationEvent : MonoBehaviour
 {
 	[SerializeField] private Animator puppy3Animator;
 	[SerializeField] private ParticleSystem magicSpellParticleSystem;
+    [SerializeField]  private bool magic=false;
 
-	private void Update()
-	{
 
-	}
 
-	public void PuppyMagicSpell()
+    private void Update()
+    {
+        if (Input.GetAxisRaw("Vertical") > 0f) //Walk
+        {
+            transform.position += new Vector3(Time.deltaTime * 0.3f, 0f);
+            puppy3Animator.SetBool("IsMoving", true);
+        }
+        else //Idle
+        {
+            puppy3Animator.SetBool("IsMoving", false);
+        }
+
+        if (magic == true)
+        {
+            PuppyMagicSpell();
+        }
+
+    }
+
+    public void PuppyMagicSpell()
 	{
 		magicSpellParticleSystem.Emit(200);
 	}

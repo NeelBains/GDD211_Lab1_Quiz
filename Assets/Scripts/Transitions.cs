@@ -14,10 +14,11 @@ public class Transitions : MonoBehaviour
 		if (Input.GetAxisRaw("Vertical") > 0f) //Walk
 		{
 			transform.position += new Vector3(Time.deltaTime * 0.3f, 0f);
+            puppy1Animator.SetBool("IsMoving", true);
 		}
 		else //Idle
 		{
-
-		}
+            puppy1Animator.SetBool("IsMoving", false);
+        }
 	}
 }
